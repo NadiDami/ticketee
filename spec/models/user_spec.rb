@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe User do
+
+  it {should have_many :permissions }
   describe 'passwords' do
     it 'needs a password and confirmation to save' do
       u = User.new(name: "steve", email: "steve@example.com")
