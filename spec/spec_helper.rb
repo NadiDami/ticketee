@@ -3,6 +3,47 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'capybara/poltergeist'
+
+Capybara.javascript_driver = :poltergeist
+
+module Capybara::Poltergeist
+
+  class Client
+
+    private
+    def redirect_stdout
+      prev = STDOUT.dup
+      prev.autoclose = false
+      $stdout = @write_io
+      STDOUT.reopen(@write_io)
+
+      prev = STDERR.dup
+      prev.autoclose = false
+      $stderr = @write_io
+      STDERR.reopen(@write_io)
+      yield
+    ensure
+      STDOUT.reopen(prev)
+      $stdout = STDOUT
+      STDERR.reopen(prev)
+      $stderr = STDERR
+    end
+  end
+
+end
+
+class WarningSuppressor
+  class << self
+    def write(message)
+      if message =~ /QFont::setPixelSize: Pixel size <= 0/ || message =~/CoreText performance note:/ then 0 else puts(message);1;end
+    end
+  end
+end
+ 
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor)
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -39,4 +80,9 @@ RSpec.configure do |config|
   # the seed, which is printed after each run.
   #     --seed 1234
   config.order = "random"
+
+  config.include FactoryGirl::Syntax::Methods
+  
 end
+
+

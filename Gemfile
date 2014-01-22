@@ -40,6 +40,7 @@ group :test do
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '~> 4.2.1'
   gem 'shoulda-matchers'
+  gem 'launchy'
 end
 
 # Use ActiveModel has_secure_password
@@ -49,7 +50,7 @@ gem 'cancan', '~> 1.6.10'
 
 gem 'carrierwave', '0.8.0'
 
-gem 'selenium-webdriver'
+gem 'poltergeist'
 
 gem 'database_cleaner', '1.0.1'
 
