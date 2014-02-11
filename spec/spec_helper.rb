@@ -12,7 +12,7 @@ module Capybara::Poltergeist
   class Client
 
     private
-    def redirect_stdout
+    def redirect_stdout #error stream to dev/null instead
       prev = STDOUT.dup
       prev.autoclose = false
       $stdout = @write_io
