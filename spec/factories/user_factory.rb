@@ -4,8 +4,8 @@ FactoryGirl.define do
   factory :user do
     name "username"
     email { generate(:email) }
-    password "hunter2"
-    password_confirmation "hunter2"
+    password "password"
+    password_confirmation "password"
 
     factory :admin_user do
       admin true
