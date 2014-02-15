@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :require_signin!
   helper_method :current_user
+  before_filter :find_states
 
   private
 
@@ -29,5 +30,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def find_states
+    @states = State.all 
+  end
 
 end
