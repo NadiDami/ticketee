@@ -3,6 +3,8 @@ class CommentsController < ApplicationController
   before_filter :set_ticket
 
   def create
+    sanitize_parameters!
+
     @comment = @ticket.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
@@ -25,5 +27,10 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:text, :state_id)
   end
 
+  def sanitize_parameters!
+    if cannot?(:"change_states", @ticket.project)
+      params[:comment].delete(:state_id)
+    end
+  end
 
 end

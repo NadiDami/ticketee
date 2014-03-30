@@ -15,7 +15,7 @@ class Admin::StatesController < Admin::BaseController
       redirect_to admin_states_path
     else
       flash[:alert] = "State has not been created"
-      render action: 'new'
+      render 'new'
     end
   end
 
@@ -30,7 +30,7 @@ class Admin::StatesController < Admin::BaseController
   private
 
   def state_params
-    params.require(:state).permit(:name)
+    params.require(:state).permit(:name, :background, :color)
   end
 
 end

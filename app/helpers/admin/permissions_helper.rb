@@ -9,5 +9,4 @@ module Admin::PermissionsHelper
       "change states" => "Change States"
     }
   end
-
 end

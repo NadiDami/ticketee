@@ -46,7 +46,7 @@ end
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-gem 'cancan', '~> 1.6.10'
+gem 'cancan'
 
 gem 'carrierwave', '0.8.0'
 

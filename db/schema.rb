@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216151656) do
+ActiveRecord::Schema.define(version: 20140330145731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,12 @@ ActiveRecord::Schema.define(version: 20140216151656) do
   end
 
   create_table "states", force: true do |t|
-    t.string  "name"
-    t.string  "color"
-    t.string  "background"
-    t.boolean "default",    default: false
+    t.string   "name"
+    t.string   "color"
+    t.string   "background"
+    t.boolean  "default",    default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tickets", force: true do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140216151656) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "state_id"
+    t.string   "asset"
   end
 
   add_index "tickets", ["project_id"], name: "index_tickets_on_project_id", using: :btree

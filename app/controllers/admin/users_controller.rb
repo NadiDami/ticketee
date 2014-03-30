@@ -5,9 +5,6 @@ class Admin::UsersController < Admin::BaseController
     @users = User.order(:email)
   end
 
-  def show
-  end
-
   def new
     @user = User.new
   end
@@ -22,8 +19,11 @@ class Admin::UsersController < Admin::BaseController
       redirect_to admin_users_path
     else
       flash.now[:alert] = "User has not been created."
-      render action: 'new'
+      render 'new'
     end
+  end
+
+  def show
   end
 
   def edit
@@ -40,7 +40,7 @@ class Admin::UsersController < Admin::BaseController
       redirect_to admin_users_path
     else
       flash[:alert] = "User has not been updated."
-      render action: 'edit'
+      render 'edit'
     end
   end
 

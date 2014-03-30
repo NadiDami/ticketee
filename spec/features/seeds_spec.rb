@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'Seed Data' do
   scenario 'the basics' do
     load Rails.root + "db/seeds.rb"
-    user = User.find_by_email!("admin@example.com")
+    user = create(:admin_user)
     sign_in_as! user
     click_link 'Ticketee Beta'
     click_link 'New Ticket'
