@@ -11,9 +11,7 @@ feature "Assigning permissions" do
     click_link "Admin"
     click_link "Users"
     click_link user.email
-    click_link "Permissions"
-
-   
+    click_link "Permissions" 
   end
 
   scenario "Viewing a project" do
@@ -72,28 +70,22 @@ feature "Assigning permissions" do
     expect(page).to have_content("Ticket has been deleted.")
   end
 
-  # scenario "Changing states for a ticket", js: true do
-  #   State.create!(name: "Open")
-  #   check_permission_box "view", project
-  #   check_permission_box "change_states", project
-  #   click_button "Update"
-  #   click_link "Sign out"
+  scenario "Changing states for a ticket", js: true do
+    State.create!(name: "Open")
+    check_permission_box "view", project
+    check_permission_box "change_states", project
+    click_button "Update"
+    click_link "Sign out"
 
-  #   sign_in_as!(user)
-  #   click_link project.name
-  #   click_link ticket.title
-  #   fill_in "Text", with: "Opening this ticket."
-  #   select "Open", from: "State"
-  #   click_button "Create Comment"
+    sign_in_as!(user)
+    click_link project.name
+    click_link ticket.title
+    fill_in "Text", with: "Opening this ticket."
+    select "Open", from: "State"
+    click_button "Create Comment"
 
-  #   expect(page).to have_content("Comment has been created.")
-  #   puts "******************************************"
-  #   puts "Available states: #{State.all.each {|state| state.name }}"
-  #   puts "******************************************"
-  #   puts "The ticket's state is: #{ticket.state}"
-  #   puts "******************************************"
-  #   within("#ticket .state") do
-  #     expect(page).to have_content("Open")
-  #   end
-  # end
+    within("#ticket .states") do
+      expect(page).to have_content("Open")
+    end
+  end
 end
