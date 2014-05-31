@@ -5,7 +5,7 @@ feature "Creating states" do
     sign_in_as! create(:admin_user)
   end
 
-  scenario "Creagting a state" do
+  scenario "Creating a state" do
     click_link 'Admin'
     click_link 'States'
     click_link 'New State'
