@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:text, :state_id)
+    params.require(:comment).permit(:text, :state_id, :tag_names)
   end
 
   def sanitize_parameters!
