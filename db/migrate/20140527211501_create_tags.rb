@@ -5,7 +5,7 @@ class CreateTags < ActiveRecord::Migration
     end
   end
 
-	create_table :tags_tickets, id: false do |t|
-		t.integer :tag_id, :ticket_id
-	end
+  create_table :tags_tickets, id: false do |t|
+    t.integer :tag_id, :ticket_id
+  end
 end

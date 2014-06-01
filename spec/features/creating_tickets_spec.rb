@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Creating Tickets" do
 
-	before do
+  before do
     project = FactoryGirl.create(:project)
     user = FactoryGirl.create(:user)
     define_permission!(user, "view", project)
@@ -63,16 +63,15 @@ feature "Creating Tickets" do
   end
 
   scenario 'creating a ticket with tags' do
-		fill_in 'Title', with: 'Non-standards compliance'
-	 	fill_in 'Description', with: 'My pages are ugly!'
-		fill_in 'Tags', with: 'browser visual'
-		click_button 'Create Ticket'
-		expect(page).to have_content('Ticket has been created.')
-		within('#ticket #tags') do
-			expect(page).to have_content('browser')
-			expect(page).to have_content('visual')
-		end
-
-	end
+    fill_in 'Title', with: 'Non-standards compliance'
+    fill_in 'Description', with: 'My pages are ugly!'
+    fill_in 'Tags', with: 'browser visual'
+    click_button 'Create Ticket'
+    expect(page).to have_content('Ticket has been created.')
+    within('#ticket #tags') do
+      expect(page).to have_content('browser')
+      expect(page).to have_content('visual')
+    end
+  end
   
 end
